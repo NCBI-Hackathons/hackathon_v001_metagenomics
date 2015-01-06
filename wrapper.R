@@ -22,7 +22,7 @@ resultNames = sapply(dirs,function(i){
 	})
 # check resultNames is not a list
 print("Summarizing samples")
-sraBlastCmd = sprintf("Rscript hackathon_v001_metagenomics/summarize_samples.R o='%s' %s",outputFile,resultNames)
+sraBlastCmd = sprintf("Rscript %s/summarize_samples.R o=\"'%s'\" %s",bin,outputFile,resultNames)
 print(sraBlastCmd)
 #system(sraBlastCmd)
 
