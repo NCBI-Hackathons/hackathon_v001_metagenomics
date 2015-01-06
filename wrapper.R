@@ -2,16 +2,18 @@
 rm(list=ls())
 args <- commandArgs(TRUE)
 if(length(args)<4){
-  stop("Usage: wrapper.R db='viral_refseq.fna' o='outfile' directory1 directory2 ...")
+  stop("Usage: wrapper.R db=''viral_refseq.fna'' o='outfile' directory1 directory2 ...")
 }
-viralDb 	= eval(parse(text=args[1]))
-outputFile 	= eval(parse(text=args[2]))
+bin = "hackathon_v001_metagenomics"
+viralDb = eval(parse(text=args[1]))
+outputFile = eval(parse(text=args[2]))
 
 # Run sra-blastn
 dirs = args[3:length(args)]
 for(i in dirs){
 	print(sprintf("Running file %s",i))
-	cmd = sprintf("Rscript hackathon_v001_metagenomics/blastn_sample.R db='%s' %s",viralDb,paste(grep("fastq",list.files(i,full.names=TRUE),value=TRUE)))
+	dirFiles = paste(grep("fastq",list.files(i,full.names=TRUE),value=TRUE))
+	cmd = sprintf("Rscript %s/blastn_sample.R db=\"'%s'\" %s",bin,viralDb,dirFiles)
 	print(cmd)
 	system(cmd)
 }
@@ -21,7 +23,8 @@ resultNames = sapply(dirs,function(i){
 # check resultNames is not a list
 print("Summarizing samples")
 sraBlastCmd = sprintf("Rscript hackathon_v001_metagenomics/summarize_samples.R o='%s' %s",outputFile,resultNames)
-system(sraBlastCmd)
+print(sraBlastCmd)
+#system(sraBlastCmd)
 
 # Run regular blastn
 
