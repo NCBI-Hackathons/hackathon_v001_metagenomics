@@ -22,5 +22,5 @@ blastCmd = sprintf("blastn_vdb -db %s -query %s %s",fileName,viralDb,bOptions)
 
 # Currently in testing mode, to leave testing mode remove the sprintf echo..
 system(latfCmd)
-system(sprintf(karCmd)
-system(sprintf(blastCmd)
+system(karCmd)
+system(blastCmd)
