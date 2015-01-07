@@ -14,7 +14,7 @@ if(length(args)<2){
 
 viralDb = eval(parse(text=args[1]))
 files = args[2:length(args)]
-fileName = sub("^([^.]*).*", "\\1", args[2])
+fileName = gsub("_[12].fastq","",args[2])
 specialName = gsub("SRS","SRR",fileName)
 
 latfOptions = "-L info -E 1000000 --quality PHRED_33 --cache-size 163840 --tmpfs /blast/meta/tmp"
