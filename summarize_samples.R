@@ -8,12 +8,12 @@ args <- commandArgs(TRUE)
 # Assumes (which it shouldn't pragmatically) first argument is
 # 	the name for outfile and specifically called as o='path/filename' 
 #   without spaces.
-if(length(args)<2){
-  stop("Usage: summarize_samples.R o='outfile' file1 file2 ...")
+if(length(args)<1){
+  stop("Usage: summarize_samples.R file1 file2 ...")
 }
-fileNames = sub("^([^.]*).*", "\\1", args)
+fileNames = basename(args)
 fileResults = lapply(args,function(i){
-		read.csv(i,header=FALSE,stringsAsFactors=FALSE,"\t")
+		tryCatch(read.csv(i,header=FALSE,stringsAsFactors=FALSE,"\t"),error=function(e){})
 	})
 virusesFound = lapply(fileResults,function(i){
 		table(i[,1])
@@ -24,7 +24,7 @@ for(i in 1:length(virusesFound)){
 	vlist = c(vlist,names(virusesFound[[i]]))
 }
 vlist = unique(vlist)
-countMatrix = array(NA,dim=c(length(vlist),length(fileNames)))
+countMatrix = array(0,dim=c(length(vlist),length(fileNames)))
 colnames(countMatrix) = fileNames
 rownames(countMatrix) = vlist
 

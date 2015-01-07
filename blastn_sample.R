@@ -19,7 +19,7 @@ specialName = gsub("SRS","SRR",fileName)
 
 latfOptions = "-L info -E 1000000 --quality PHRED_33 --cache-size 163840 --tmpfs /blast/meta/tmp"
 latfCmd = sprintf("latf-load %s -o %s.sra %s > %s.latf.out 2>&1",latfOptions,fileName,paste(files,collapse=" "),fileName)
-karCmd  = sprintf("kar -c %sKar -d %s.sra",specialName,fileName)
+karCmd  = sprintf("kar -c %sKar -d %s.sra --force",specialName,fileName)
 bOptions = "-outfmt '6 qseqid sseqid slen pident length mismatch gapopen qstart qend sstart send evalue bitscore'"
 blastCmd = sprintf("blastn_vdb -db %sKar -query %s %s -out %s.blast.results",specialName,viralDb,bOptions,fileName)
 
