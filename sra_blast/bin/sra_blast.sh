@@ -73,8 +73,8 @@ then
         echo "Running the process on $dir at $DATE at $TIME" | tee -a $LOG
         FILES=$(find $dir -name '*.fast[qa]' -exec echo {} \;)
         OUTPUT=$(basename $dir)
-        ./bin/latf_load.sh -o SRR.$OUTPUT -e $E -q $Q -c $C -l $LOG $FILES
-        ./bin/blastn_vdb_wrapper.sh -v $VIRAL -s SRR.$OUTPUT
+        ./latf_load.sh -o SRR.$OUTPUT -e $E -q $Q -c $C -l $LOG $FILES
+        ./blastn_vdb_wrapper.sh -v $VIRAL -s SRR.$OUTPUT
     done
     wait
 
