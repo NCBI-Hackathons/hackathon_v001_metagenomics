@@ -3,7 +3,8 @@
 usage()
 {
 cat << EOF
-usage: $0 -v viral_refseq.fna SRR00000 SRR00001 ...
+usage: $0 options -v viral_refseq.fna SRR00000 SRR00001
+
 
 This script will convert sample directories of fastq
 and fasta files into SRA format and then KAR format
@@ -14,23 +15,29 @@ abundance matrix.
 OPTIONS:
    -h      Show this message
    -v      Viral database (required)
+   -n      Numner of cores to parallelize samples - default 1
+   -p      Number of threads for blastn - default 1
    -e      Number of errors - default 1000000 (latf-load option)
    -q      Quality score - default PHRED_33 (latf-load option)
    -c      Cache-size - default 163840 (latf-load option)
+   -l      Log file name - default SRA_Blast_virome_log.txt
 EOF
 }
 
 VIRAL=
-DATE=`date +%Y-%m-%d`
-TIME=`date +%H:%M`
+OPTIND=1
+N=1
+P=1
 
 E='1000000'
 Q='PHRED_33'
 C='163840'
-OPTIND=1
+
+DATE=`date +%Y-%m-%d`
+TIME=`date +%H:%M`
 LOG='SRA_Blast_virome_log.txt'
 
-while getopts “hv:e:q:c:l:” OPTION
+while getopts “hv:n:p:e:q:c:l:” OPTION
 do
      case $OPTION in
          h)
@@ -39,6 +46,12 @@ do
             ;;
          v)
             VIRAL=$OPTARG
+            ;;
+         n) 
+            N=$OPTARG
+            ;;
+         p) 
+            P=$OPTARG
             ;;
          e) 
             E=$OPTARG
@@ -67,22 +80,24 @@ then
     exit 1
 fi
 
-if [[ !(-z $VIRAL) ]]
-then
+if [[ !(-z $VIRAL) && ($N -eq 1) ]]; then
     for dir in "$@"
     do
         echo "Running the process on $dir at $DATE at $TIME" | tee -a $LOG
         FILES=$(find $dir -name '*.fast[qa]' -exec echo {} \;)
         OUTPUT=$(basename $dir)
         ./latf_load.sh -o SRR.$OUTPUT -e $E -q $Q -c $C -l $LOG $FILES
-        ./blastn_vdb_wrapper.sh -v $VIRAL -s SRR.$OUTPUT
+        ./blastn_vdb_wrapper.sh -v $VIRAL -s SRR.$OUTPUT -p $P
     done
     wait
 
     exit 1
+elif [[ !(-z $VIRAL) && ($N -gt 1) ]]; then
+    echo "Not implemented yet"
 else
  usage
 fi
+
 
 # for i in $(find $dir -name '*.fast[qa]' -exec echo {} \;)
         # do 

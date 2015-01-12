@@ -23,8 +23,9 @@ TIME=`date +%H:%M`
 VIRAL=
 SAMPLE=
 LOG='SRA_Blast_virome_log.txt'
+P=1
 
-while getopts “hs:v:l:” OPTION
+while getopts “hs:v:p:l:” OPTION
 do
      case $OPTION in
          h)
@@ -37,7 +38,10 @@ do
          v) 
             VIRAL=$OPTARG
             ;;
-         l) 
+         p)
+            P=$OPTARG
+            ;;
+         l)
             LOG=$OPTARG
             ;;            
          ?)
@@ -47,11 +51,10 @@ do
      esac
 done
 
-if [[ !(-z $VIRAL) && !(-z $SAMPLE) ]]
-then
-    BOPTIONS="-outfmt '6 qseqid sseqid slen pident length mismatch gapopen qstart qend sstart send evalue bitscore'"
+if [[ !(-z $VIRAL) && !(-z $SAMPLE) ]]; then
+    BOPTIONS="-outfmt '6 qseqid sseqid slen pident length mismatch gapopen qstart qend sstart send evalue bitscore' -num_threads $P"
     echo "Running blastn_vdb at $DATE at $TIME on $SAMPLE" | tee -a $LOG
-    blastn_vdb -db $SAMPLE -query $VIRAL $BOPTIONS -out $SAMPLE.blast.results
+    blastn_vdb -db $SAMPLE -query $VIRAL $BOPTIONS -out $SAMPLE.blast.results >> $LOG 2>&1
     exit 1
 else
  usage
