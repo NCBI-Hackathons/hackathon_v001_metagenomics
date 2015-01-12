@@ -1,11 +1,11 @@
 #!/bin/sh
-# Argument = options file1 file2 ...
-# Potentially need to include a tmpfs if large
-# files (--tmpfs /tmp)
+# Argument = options SRRXXXX1.fastq SRRXXXX2.fastq ...
+# Potentially required to include a tmpfs if running on large
+# files in small directory. (--tmpfs /tmp)
 usage()
 {
 cat << EOF
-usage: $0 options file1 file2 ...
+usage: $0 options SRRXXXX1.fastq SRRXXXX2.fastq ...
 
 This script will take a list of fastq/
 fasta files and convert them to SRA followed
@@ -19,7 +19,6 @@ OPTIONS:
    -q      Quality score - default PHRED_33
    -c      Cache-size - default 163840
    -l      Log file name - default 'SRA_Blast_virome_log.txt'
-   -v      Verbose. Not implemented yet.
 EOF
 }
 DATE=`date +%Y-%m-%d`
