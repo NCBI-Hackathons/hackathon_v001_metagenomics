@@ -37,8 +37,8 @@ Running the pipelines locally
 NCBI's [sratoolkit](http://www.ncbi.nlm.nih.gov/Traces/sra/?view=software)
 ```
 wget http://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/2.4.3/sratoolkit.2.4.3-ubuntu64.tar.gz
-tar xfz sratoolkit.2.4.2-ubuntu64.tar.gz
-export PATH=$PATH:/bin/sratoolkit.2.4.2-ubuntu64/bin
+tar xfz sratoolkit.2.4.3-ubuntu64.tar.gz
+export PATH=$PATH:/bin/sratoolkit.2.4.3-ubuntu64/bin
 vdb-config -i
 ```
 ‘latf-load’ , ‘blastn_vdb’, ‘fastq-dump’, ‘prefetch’, ‘vdb-config’, ‘align-info’, and ‘kar’ should now be in your path 
