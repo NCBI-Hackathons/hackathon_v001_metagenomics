@@ -15,7 +15,6 @@ OPTIONS:
    -e      Number of errors - default 1000000 
    -q      Quality score - default PHRED_33
    -c      Cache-size - default 163840
-   -v      Verbose. Not implemented yet.   
 EOF
 }
 
