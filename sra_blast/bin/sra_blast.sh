@@ -5,9 +5,11 @@ usage()
 cat << EOF
 usage: $0 -v viral_refseq.fna SRR00000 SRR00001
 
-This script will convert a directory of fastq
-fastq files to SRA and run blast against a
-chosen database. Requires -d and -v.
+This script will convert sample directories of fastq
+and fasta files into SRA format and then KAR format
+and run blastn_vdb against a chosen database. Requires -v.
+See also summarize_samples.R to convert results into a 
+abundance matrix.
 
 OPTIONS:
    -h      Show this message
