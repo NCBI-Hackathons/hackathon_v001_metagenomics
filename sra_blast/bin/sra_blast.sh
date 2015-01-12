@@ -1,22 +1,22 @@
 #!/bin/sh
-# Argument = -v viral_refseq.fna SRR00000 SRR00001 SRR00002 SRR00003
+# Argument = -v viral_refseq.fna SRR00000 SRR00001 ...
 usage()
 {
 cat << EOF
-usage: $0 -v viral_refseq.fna SRR00000 SRR00001
+usage: $0 -v viral_refseq.fna SRR00000 SRR00001 ...
 
 This script will convert sample directories of fastq
 and fasta files into SRA format and then KAR format
 and run blastn_vdb against a chosen database. Requires -v.
-See also summarize_samples.R to convert results into a 
+See also summarize_samples.R to convert results into an 
 abundance matrix.
 
 OPTIONS:
    -h      Show this message
-   -v      Viral database
-   -e      Number of errors - default 1000000 
-   -q      Quality score - default PHRED_33
-   -c      Cache-size - default 163840
+   -v      Viral database (required)
+   -e      Number of errors - default 1000000 (latf-load option)
+   -q      Quality score - default PHRED_33 (latf-load option)
+   -c      Cache-size - default 163840 (latf-load option)
 EOF
 }
 
