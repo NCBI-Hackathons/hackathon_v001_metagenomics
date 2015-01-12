@@ -1,4 +1,2 @@
-SRR* - Sample HMP metagenomic samples with multiple fastq files inside
-bin - blastn_vdb wrapper and latf-loader
-sra_blast.sh - script to convert directories to blast results against viral_refseq
-viral_refseq.faa - refseq collection 1.1 - last modified  1/5/15, 10:55:00 PM from ftp://ftp.ncbi.nlm.nih.gov/refseq/release/viral/viral.1.1.genomic.fna.gz
+SRR* - Sample FAKE HMP metagenomic samples with multiple fastq files inside
+bin - folder with basic scripts - most important are sra_blast, latf-loader, blastn_vdb_wrapper, summarize_samples.R
