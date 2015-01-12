@@ -57,6 +57,7 @@ Downloading the current pipelines
 ```
 git clone https://github.com/DCGenomics/hackathon_v001_metagenomics.git
 export PATH=$PATH:/bin/hackathon_v001_metagenomics/sra_blast/bin/
+export PATH=$PATH:/bin/hackathon_v001_metagenomics/contig_blast/
 ```
 Testing on two samples
 ```
