@@ -48,12 +48,6 @@ NCBI's [refseq](http://www.ncbi.nlm.nih.gov/refseq/)
 wget ftp://ftp.ncbi.nlm.nih.gov/refseq/release/viral/*.fna*
 gunzip *.fna*
 ```
-[Human Microbiome Project](hmpdacc.org)'s test examples
-```
-wget ftp://public-ftp.hmpdacc.org/Illumina/right_retroauricular_crease/*
-tar jxf * # warning - will take a long time. there are example datasets in this repo
-```
-
 Downloading the current pipelines
 ```
 git clone https://github.com/DCGenomics/hackathon_v001_metagenomics.git
