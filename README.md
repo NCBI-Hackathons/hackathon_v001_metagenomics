@@ -27,6 +27,12 @@ Data Sources
 ------------
 To be filled in
 
+NCBI's viral [refseq](http://www.ncbi.nlm.nih.gov/refseq/)
+```
+wget ftp://ftp.ncbi.nlm.nih.gov/refseq/release/viral/*.fna*
+gunzip *.fna*
+```
+
 Pipeline descriptions
 ------------
 To be filled in
@@ -43,18 +49,13 @@ vdb-config -i
 ```
 ‘latf-load’ , ‘blastn_vdb’, ‘fastq-dump’, ‘prefetch’, ‘vdb-config’, ‘align-info’, and ‘kar’ should now be in your path 
 
-NCBI's [refseq](http://www.ncbi.nlm.nih.gov/refseq/)
-```
-wget ftp://ftp.ncbi.nlm.nih.gov/refseq/release/viral/*.fna*
-gunzip *.fna*
-```
 Downloading the current pipelines
 ```
 git clone https://github.com/DCGenomics/hackathon_v001_metagenomics.git
 export PATH=$PATH:$PWD/hackathon_v001_metagenomics/sra_blast/bin/
 export PATH=$PATH:$PWD/hackathon_v001_metagenomics/contig_blast/
 ```
-Testing on two samples
+Testing on two samples with sra_blast
 ```
 sra_blast.sh -v /path/viral_refence.faa SRR00000 SRR00001
 summarize_samples.R SRR00000.blast.results SRR00001.blast.results
