@@ -9,7 +9,7 @@ mkdir HMP/scaffolds
 mkdir HMP/scaffolds/right_retroauricular_crease
 
 cd refseq_viral
-wget ftp://ftp.ncbi.nlm.nih.gov/refseq/release/viral/*
+wget ftp://ftp.ncbi.nlm.nih.gov/refseq/release/viral/viral.1.1.*
 cd ..
 
 cd HMP
