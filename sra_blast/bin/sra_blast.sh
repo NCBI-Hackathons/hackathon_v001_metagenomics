@@ -12,6 +12,9 @@ and run blastn_vdb against a chosen database. Requires -v.
 See also summarize_samples.R to convert results into an 
 abundance matrix.
 
+Warning: directories must be named [ESD]RRXXXXX currently
+
+
 OPTIONS:
    -h      Show this message
    -v      Viral database (required)
@@ -86,8 +89,8 @@ if [[ !(-z $VIRAL) && ($N -eq 1) ]]; then
         echo "Running the process on $dir at $DATE at $TIME" | tee -a $LOG
         FILES=$(find $dir -name '*.fast[qa]' -exec echo {} \;)
         OUTPUT=$(basename $dir)
-        ./latf_load.sh -o SRR.$OUTPUT -e $E -q $Q -c $C -l $LOG $FILES
-        ./blastn_vdb_wrapper.sh -v $VIRAL -s SRR.$OUTPUT -p $P
+        latf_load.sh -o $OUTPUT -e $E -q $Q -c $C -l $LOG $FILES
+        blastn_vdb_wrapper.sh -v $VIRAL -s $OUTPUT -p $P
     done
     wait
 
