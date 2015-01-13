@@ -52,7 +52,9 @@ do
 done
 
 if [[ !(-z $VIRAL) && !(-z $SAMPLE) ]]; then
-    BOPTIONS="-outfmt '6 qseqid sseqid slen pident length mismatch gapopen qstart qend sstart send evalue bitscore' -num_threads $P"
+	# '6 qseqid sseqid slen pident length mismatch gapopen qstart qend sstart send evalue bitscore'
+	# Add above for quality filtering
+    BOPTIONS="-outfmt 6 -num_threads $P"
     echo "Running blastn_vdb at $DATE at $TIME on $SAMPLE" | tee -a $LOG
     blastn_vdb -db $SAMPLE -query $VIRAL $BOPTIONS -out $SAMPLE.blast.results >> $LOG 2>&1
     exit 1
